@@ -1,12 +1,12 @@
-# AWS ECS Fargate for www.tenantcloud.com using Terraform
+# AWS ECS Fargate using Terraform
 
 ## Installation and configuration
 
 Clone repository and open directory
 
 ```bash
-git clone git@bitbucket.org:tenantcloud/terraform-fargate-www.tenantcloud.com.git
-cd terraform-fargate-www.tenantcloud.com
+git clone https://github.com/BrunIF/terraform-ecs-fargate.git
+cd terraform-fargate
 ```
 
 Create new environment file from example
