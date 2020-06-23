@@ -1,19 +1,28 @@
 # AWS ECS Fargate using Terraform
 
-## Installation and configuration
+![terraform v0.12.x](https://img.shields.io/badge/terraform-v0.12.x-brightgreen.svg)
 
-Clone repository and open directory
+## Usage
 
-```bash
-git clone https://github.com/BrunIF/terraform-ecs-fargate.git
-cd terraform-fargate
-```
+Create `main.tf` file
 
-Create new environment file from example
+```HCL
+module "fargate" {
+  source  = "BrunIF/fargate/ecs"
+  version = "0.1.1"
 
-```bash
-cp env/example.tfvars env/app.tfvars
-vim env/app.tfvars
+  az_count = 2
+  app_image = nginx:latest
+  app_count = 1
+  app_count_min = 1
+  app_count_max = 5
+  health_check_path = "/"
+  fargate_cpu = 512
+  fargate_memory = 1024
+  dns_zone_id = "Route53ID"
+  domain_name = "example.com"
+  project = "example"
+}
 ```
 
 ## Check and run
@@ -27,13 +36,13 @@ terraform init
 Verify your configuration
 
 ```bash
-terraform plan --var-file env/app.tfvars
+terraform plan
 ```
 
 If all is right apply configuration
 
 ```bash
-terraform apply --auto-approve --var-file env/app.tfvars
+terraform apply --auto-approve
 ```
 
 ## Destroy
@@ -41,5 +50,5 @@ terraform apply --auto-approve --var-file env/app.tfvars
 To destroy configuration run command
 
 ```bash
-terraform destroy --auto-approve --var-file env/app.tfvars
+terraform destroy --auto-approve
 ```
