@@ -9,7 +9,7 @@ Create `main.tf` file
 ```HCL
 module "fargate" {
   source  = "BrunIF/fargate/ecs"
-  version = "0.1.1"
+  version = "0.1.3"
 
   az_count = 2
   app_image = nginx:latest
